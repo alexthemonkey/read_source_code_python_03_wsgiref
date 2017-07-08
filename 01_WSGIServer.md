@@ -9,6 +9,9 @@ RESPONSE = b"Hello from server."
 
 
 def my_app(environ, start_response):
+	if environ['REQUEST_METHOD'] != 'GET':
+		print('Not GET , will return empty list.')
+		return []
 	response_headers = [('content-type', 'text/plain')]
 	start_response('200 OK', response_headers)
 	return [RESPONSE]
